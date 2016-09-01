@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	#canvas{
+		background-color:#FC9;
+		}
+</style>
+</head>
+
+<body>
+<canvas id="canvas" width="400" height="300"></canvas>
+<script>
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+	var newImg=new Image();
+	newImg.src="fruit4.jpg";
+	newImg.onload=function(){
+		context.drawImage(newImg,30,20);
+		//从10,10，开始画图片 图片的大小为50,70
+		/*context.drawImage(newImg,10,10,50,70);
+		//截取 截取一部分来显示 从20 20 开始 截取50,50 放到70,80位置来显示 大小为40,40
+		context.drawImage(newImg,20,20,50,50,70,80,40,40);*/
+		//图片的旋转
+		context.save();
+		context.translate(30,20);
+		context.rotate(-10*Math.PI/180);
+		var img=new Image();
+		img.src="fruit4.jpg";
+		context.drawImage(img,0,0,133,100);
+		context.restore();
+		}
+		</script>
+
+</body>
+</html>

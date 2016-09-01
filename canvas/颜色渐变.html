@@ -1,0 +1,27 @@
+；<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="canvas" width="400" height="300"></canvas>
+<script>
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+	//渐变分两种 1.线性 径向
+	var grd=context.createLinearGradient(100,120,400,400);
+	//定义颜色 addColorStop(0-1,)0:刚开始 1 结束 颜色
+	grd.addColorStop(0,'red');
+	grd.addColorStop(0.2,'yellow');
+	grd.addColorStop(0.6,'green');
+	grd.addColorStop(1,'blue');
+	context.fillStyle=grd;
+	//context.fillRect(100,120,200,200);
+	context.font="100px 华文行楷";
+	context.strokeStyle=grd;
+	context.strokeText("王清",120,200)
+</script>
+</body>
+</html>

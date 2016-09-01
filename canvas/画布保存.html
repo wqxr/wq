@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="canvas" width="400" height="300"></canvas>
+
+<script>
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+	//context.fillStyle="red";
+	context.save();//保存
+	context.fillStyle="lime";//如果属性存在save和restore之间，那么属性只有存在这一个区间
+	context.fillRect(0,0,100,100);
+	context.restore();
+	context.fillRect(0,120,100,100);
+</script>
+</body>
+
+</html>

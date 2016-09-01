@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="canvas" width="1000" height="1000" style="background:#000"></canvas>
+<script>
+	var cxt=document.getElementById("canvas").getContext("2d");
+	function radius(){
+		for(var i=0;i<8;i++){
+			cxt.beginPath();
+			cxt.arc(500,500,(i+1)*50,0,360,false);
+			cxt.closePath();
+			cxt.strokeStyle="#fff";
+			cxt.stroke();
+			}
+		}
+	radius();
+	function star(x,y,r,cycle,sColor,eColor){
+		//画出星球的坐标点
+		this.x=x;
+		this.y=y;
+		
+		//星球的半径
+		this.r=r;
+		//星球的yanse（开始颜色和结束颜色）
+		//公转周期
+		this.cycle=cycle;
+		this.sColor=sColor;
+		this.eColor=eColor;
+		//新建一个渐变颜色的空对象
+		this.color=null;
+		this.time=0;
+		this.draw=function(){
+			cxt.save();
+			cxt.translate(500,500);
+			cxt.rotate(this.time*(360/this.cycle)*Math.PI/180);
+			
+			
+			//画星球
+			cxt.beginPath();
+			cxt.arc(this.x,this.y,this.r,0,360,false);
+			cxt.closePath();
+			
+			//填充星球
+			this.color=cxt.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
+			
+			this.color.addColorStop(0,this.sColor);
+			this.color.addColorStop(1,this.eColor);
+			cxt.fillStyle=this.color;
+			cxt.fill();
+			this.time+=1;
+			cxt.restore();
+			
+			}
+		}
+		function Sun(){
+			star.call(this,0,0,20,0,"#f00","#f90");
+			}
+			//创建一个水星的对象和构造方法
+	  function Mercury(){
+	  	star.call(this,0,-50,10,87.70,"#a69697","#5c3e40");
+	  	}
+		//创建一个金星的对象和构造方法
+		function Vanus(){
+	  	star.call(this,0,-100,10,224.701,"#c4dbac","#1f1315");
+	  	}
+		function Earth(){
+	  	star.call(this,0,-150,10,365.224,"#78b1e8","#05dc12");
+	  	}
+		function Marz(){
+	  	star.call(this,0,-200,10,686.98,"#cec986","#76422d");
+	  	}
+		function Jupiter(){
+	  	star.call(this,0,-250,10,4332.589,"#cda48e","#76422d");
+	  	}
+		function Saturn(){
+	  	star.call(this,0,-300,10,30799.095,"#e7f9e3","#5c4533");
+	  	}
+		function Uranus(){
+	  	star.call(this,0,-350,10,64654.23,"#a7e1e5","#19243a");
+	  	}
+		function Neptune(){
+	  	star.call(this,0,-400,10,134336,"#0661b2","#1e3b73");
+	  	}
+		var sun=new Sun();
+		var water=new Mercury();
+		var gold=new Vanus();
+		var diqiu=new Earth();
+		var fire=new Marz();
+		var wood=new Jupiter();
+		var goil=new Saturn();
+		var god=new Uranus();
+		var sea=new Neptune();
+		function move(){
+			cxt.clearRect(0,0,1000,1000);
+			radius();
+			sun.draw();
+			water.draw();
+			gold.draw();
+			diqiu.draw();
+			fire.draw();
+			wood.draw();
+			goil.draw();
+			god.draw();
+			sea.draw();
+		}
+		setInterval(move,10);
+		
+</script>
+</body>
+</html>
