@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<p id=result></p>
+<script>
+function createXHR(){
+		if(typeof XMLHttpRequest!='undefined'){
+			return new XMLHttpRequest();
+			
+			}else  if(typeof ActiveXObject!='undefined'){//ie早起版本
+			//查看调用函数中是否存在一个activeXtring的变量这个activeXtring的变量是自己创建的刚开始没有
+				if(typeof arguments.callee.activeXString!='string'){
+					var versions=['MSXML2.XMLHttp.6.0','MSXML2.XMLHttp.3.0','MSXML.XMLHttp'];
+					for(var i=0,len=versions.length;i<len;i++){
+						try{
+							var xhr=new ActiveXObject(versions[i]);
+							arguments.callee.activeXString=versions[i];
+							return xhr;
+							}catch(ex){
+						}
+					}
+				}
+				return new ActiveXObject(arguments.callee.activeXString);
+			}else{
+				throw new Error('No xhr object available.');
+			}
+		}
+		
+		
+		var request=createXHR();
+		/*if(request){
+			//get请求
+			request.onreadystatechange=listener;
+			request.open('GET','http://localhost:8080/1.action?name=zy',true);
+			request.send(null);
+			}*/
+			
+			
+				
+				if(request){
+					
+				  request.onreadystatechange=listener;
+				  request.open('POST','http://192.168.15.222:8080/testxml/header.action',true);
+				 request.setRequestHeader('num',2);
+				 // request.setRequestHeader('Content-Type','application/x-www-form-urlencoded','num',2);
+				  request.send("num="+num);
+				}
+				
+			//回掉函数
+			function listener(){
+				
+					if( request.readyState==4&&request.status==200){
+							
+							document.getElementById("result").innerHTML=request.getresponseHeader(num);
+						}
+					}
+				
+</script>
+</body>
+</html>

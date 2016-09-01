@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+  <script>
+  
+//序列化表单    name=zy&password=a
+	function serialize(form){        
+            var parts = new Array();
+            var field = null; 
+			//    form.elements  表单中所有的元素           
+            for (var i=0, len=form.elements.length; i < len; i++){
+                field = form.elements[i];   //取出每一个元素
+                switch(field.type){
+                    case "select-one":
+                    case "select-multiple":
+                        for (var j=0, optLen = field.options.length; j < optLen; j++){
+                            var option = field.options[j];
+                            if (option.selected){
+                                var optValue = "";
+                                if (option.hasAttribute){
+                                    optValue = (option.hasAttribute("value") ? option.value : option.text);
+                                } else {
+                                    optValue = (option.attributes["value"].specified ? option.value : option.text);
+                                }
+                                parts.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(optValue));
+                            }
+                        }
+                        break;
+                        
+                    case undefined:     //fieldset
+                    case "file":        //file input
+                    case "submit":      //submit button
+                    case "reset":       //reset button
+                    case "button":      //custom button
+                        break;
+                        
+                    case "radio":       //radio button
+                    case "checkbox":    //checkbox
+                        if (!field.checked){
+                            break;
+                        }
+                        /* falls through */
+                                    
+                    default:
+                        parts.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(field.value));
+                }
+            }        
+            return parts.join("&");
+        }
+		
+		function show(){
+			var form=document.myform;
+			var result=serialize(form);
+			alert(result);
+			}
+		
+</script>
+
+</head>
+	
+<body>
+<form name="myform">
+    	<p>姓名:<input type="text" name="sname"/></p>
+        <p>密码：<input type="password" name="pwd"/></p>
+        <p><input type="radio" name="sex" value='1'/>男
+        	<input type="radio" name="sex"/>女</p>
+        <p>兴趣爱好： <input type="checkbox" name="ins" value=" 篮球"/>篮球
+         <input type="checkbox" name="ins" value="swin"/>swin</p>
+         
+         <p>想去的地方:<select name="places" multiple>
+         			<option>北京</option>
+                    <option>上海</option>
+                    <option>长沙</option>
+                    </select>
+         </p>
+         <p><input type="button" onclick="show()"/></p>
+    </form>
+ 
+
+</body>
+</html>

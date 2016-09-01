@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<form action='' method='post'>
+名字：<input type="text" id="name" />
+密码:<input type="password" id="password"/>
+<input type="button" value="登录" id="btn" onclick="login()"/>
+</form>
+<p id="result"></p>
+<script>
+function createXHR(){
+		if(typeof XMLHttpRequest!='undefined'){
+			return new XMLHttpRequest();
+			
+			}else  if(typeof ActiveXObject!='undefined'){//ie早起版本
+			//查看调用函数中是否存在一个activeXtring的变量这个activeXtring的变量是自己创建的刚开始没有
+				if(typeof arguments.callee.activeXString!='string'){
+					var versions=['MSXML2.XMLHttp.6.0','MSXML2.XMLHttp.3.0','MSXML.XMLHttp'];
+					for(var i=0,len=versions.length;i<len;i++){
+						try{
+							var xhr=new ActiveXObject(versions[i]);
+							arguments.callee.activeXString=versions[i];
+							return xhr;
+							}catch(ex){
+						}
+					}
+				}
+				return new ActiveXObject(arguments.callee.activeXString);
+			}else{
+				throw new Error('No xhr object available.');
+			}
+		}
+		
+		
+		var request;
+		/*if(request){
+			//get请求
+			request.onreadystatechange=listener;
+			request.open('GET','http://localhost:8080/1.action?name=zy',true);
+			request.send(null);
+			}*/
+			
+			function login(){
+				request=createXHR();
+				if(request){
+					var name=document.getElementById("name").value;
+					var password=document.getElementById("password").value;
+					request.onreadystatechange=listener;
+					request.open('POST','http://192.168.1.238:8080/test/login.action',true);
+					request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+					request.send("name="+name+"&password"+password);
+					}
+				}
+			//回掉函数
+			function listener(){
+				
+					if( request.readyState==4&&request.status==200){
+							
+							document.getElementById("result").innerHTML=request.responseText;
+						}
+					}
+				
+</script>
+
+</body>
+</html>

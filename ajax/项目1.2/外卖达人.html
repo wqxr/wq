@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>外卖达人</title>
+<script type="text/javascript" src="screen.js"></script>
+<script src="wq.js"></script>
+<script src="lhz.js"></script>
+<script src="cookies.js"></script>
+<script src="lib.js"></script>
+<link rel="stylesheet" href="food.css"/>
+<link rel="stylesheet" href="submit.css"/>
+
+</head>
+
+<body>
+		<span id="logo"><img src="images/logo.png"></span>
+        <ul id="head2">
+            <li id="shop"></li>
+            <li><a href="#" id="out" >退出</a></li>
+            <li><a href="#" id='submit_t'>登录</a></li>
+              <li><p id="sub_result"></p></li>
+            
+        </ul>
+         <div id="shoppingcar">
+                <p>您要购买的食物</p>
+              </div>
+        
+
+<form id="myform" name="myform">
+      <input type="hidden" name="op" value="login">
+      <p>用户名：<input type="text" name="username" class="uname" id="uname" size="30px"></p>
+      <p>密&nbsp;&nbsp;码&nbsp;：<input type="password" name="pwd" class="pwd" size="30px"></p>
+      <p><input type="hidden" name="valcode" value="ddd">
+      </p>
+      <input type="button" name="btn" id="btn" value="登录" onclick="add()">
+      <input type="button" name="btn" id="btn2" value="取消" >
+ </form>
+
+  <script type="text/javascript" src="submit.js"></script>
+
+
+
+<div id="header">
+		<p id="d1">&nbsp;外&nbsp; 卖&nbsp; 达&nbsp; 人&nbsp;</p>
+    <p class="english">————&nbsp;Your &nbsp;Best &nbsp;Choice&nbsp;————</p>
+ </div>
+
+<div id="menu">
+  <p>Menu</p>
+</div>
+<div id="total">
+	<div id="total1">
+   
+	<div id="table">
+        </div>
+   	</div>
+   <input id="btn3" type="button" value="加载更多" /><br/>
+   <input  id="btn4" type="button" value="返回"/><input id="btn5" type="button" value="查看图文"/>
+   <div id="xian"></div>
+    
+	<div id="content">
+    	
+		<ul id="content1">
+           <li class='a'><img src="images/beauty.jpg" title="蔬百味" /></li>
+          <li class='a'><img src="images/beauty1.jpg" title="芝麻香蕉" /></li>
+          <li class='a'><img src="images/beauty2.jpg" title="拌千丝" /></li>
+          <li class='a'><img src="images/beauty3.jpg" title="手撕前男友" /></li>
+        </ul>
+       
+  </div>
+  <a href="javascript:;" class="to_left"><</a>
+  <a href="javascript:;" class="to_right">></a>
+ 
+</div>
+
+<div id="detaildiv">
+	<img src="">
+    <p></p>
+   	<p></p>
+</div>
+<div id="divinfo">
+ 
+  <p><img src="images/info.png"/><input type="text" id="span1" size="30px" style="width:300px;height:30px"/></p>
+    <p><img src="images/info2 (1).png"/><input type="text" id="span2" size="30px" style="width:300px;height:30px"/></p>
+    <p><img src="images/info3.png"/><input type="text" id="span3" size="30px" style="width:300px;height:30px"/></p>
+    <p>
+    <img src="images/info4.png" class="else_word" />
+    <textarea  rows="5" cols="20" id="span4" style="margin-top:20px;margin-left:80px"></textarea>
+    </p>
+    <p><input type="button" value="确定" id="ofcourse" style="width:100px;height:30px;margin-top:20px;margin-left:160px"/></p>
+ 
+</div>
+<div id="footer">
+	<span><img src="images/flogo.png" class="flogo"></span>
+	<p>©&nbsp;2016&nbsp;凌红竹、王清&nbsp;版权所有</p>
+</div>
+<script type="text/javascript" src="buy.js"></script>
+<script src="restruant.js"></script>
+
+</body>
+</html>

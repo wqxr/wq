@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="yclib.js"></script>
+</head>
+
+<body>
+<form name="myform">
+	<input type="hidden" name="op" value="add"/>
+    <p>学生名：<input type="text" name="sname" value="张三"/></p>
+    <p>学生年龄：<input type="text" name="age" value="22"/></p>
+    <p><input type="button" onclick="add()" value="添加"/></p>
+</form>
+<p id="result"></p>
+<span id="showall">显示所有学生的信息</span>
+<span id="showallByJson">显示所有的学生信息</span>
+<hr/>
+<table border="1" width="700px">
+	<thead>
+    	<tr>
+        	<td>编号</td>
+            <td>姓名</td>
+            <td>年龄</td>
+        </tr>
+    </thead>
+    <tbody id="students"></tbody>
+    </table>
+    <script>
+    	function add(){
+			var params=yc.serialize(document.myform);//序列化表单数据
+			console.log(params);
+			request=createXHR();
+			if(request){
+				//get请求
+			request.onreadystatechange=listener;
+			request.open('POST','http://192.168.15.222:8080/testxml/student.action',true);
+			request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			request.send(params);
+			}
+			
+		}
+		function createXHR(){
+		if(typeof XMLHttpRequest!='undefined'){
+			return new XMLHttpRequest();
+			
+			}else  if(typeof ActiveXObject!='undefined'){//ie早起版本
+			//查看调用函数中是否存在一个activeXtring的变量这个activeXtring的变量是自己创建的刚开始没有
+				if(typeof arguments.callee.activeXString!='string'){
+					var versions=['MSXML2.XMLHttp.6.0','MSXML2.XMLHttp.3.0','MSXML.XMLHttp'];
+					for(var i=0,len=versions.length;i<len;i++){
+						try{
+							var xhr=new ActiveXObject(versions[i]);
+							arguments.callee.activeXString=versions[i];
+							return xhr;
+							}catch(ex){
+						}
+					}
+				}
+				return new ActiveXObject(arguments.callee.activeXString);
+			}else{
+				throw new Error('No xhr object available.');
+			}
+		}
+		var request;
+		
+		function listener(){
+			if( request.readyState==4&&request.status==200){
+					document.getElementById("result").innerHTML=request.responseText;
+			}
+		}
+		yc.addEvent("showall","click",function(){
+			request=createXHR();
+			if(request){
+				request.onreadystatechange=findAlllistener;
+				request.open('POST','http://192.168.15.222:8080/testxml/student.action',true);
+				request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				request.send("op=findAll");
+				
+				}
+			});
+			function findAlllistener(){
+				if( request.readyState==4&&request.status==200){
+					var xml=request.responseXML;
+					var a=xml.getElementsByTagName("student");
+					var b=xml.getElementsByTagName("sname");
+					var c=xml.getElementsByTagName("age");
+					 
+					var tbody=document.getElementById("students");
+					for(var i=0;i<a.length;i++){
+						var newRow=tbody.insertRow();
+						
+						var idd=a[i].getAttribute('id');
+						var cell=newRow.insertCell(0);
+		 				cell.innerHTML=idd;
+						var cell1=newRow.insertCell(1);
+						cell1.appendChild(document.createTextNode(b[i].firstChild.nodeValue));
+						var cell2=newRow.insertCell(2);
+		 				cell2.appendChild(document.createTextNode(c[i].firstChild.nodeValue));
+					}
+					
+	                 
+					 tbody.appendChild(newRow);
+		 			
+		 			}
+				}
+			
+			
+		yc.addEvent("showallByJson","click",function(){
+			request=createXHR();
+			if(request){
+				request.onreadystatechange=findAlllistener2;
+				request.open('POST','http://192.168.15.222:8080/testxml/student.action',true);
+				request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+				request.send("op=findAll2");
+				
+				}
+			});	
+			function findAlllistener2(){
+				if(request.readyState==4&&request.status==200){
+					var str="";
+					var jsonString=request.responseText;
+					var jsonarray=eval('('+jsonString+')');
+					for(var i=0;i<jsonarray.length;i++){
+						str+="<tr>";
+						var student=jsonarray[i];
+						var id=student.id;
+						var sname=student.sname;
+						var age=student.age;
+						str+="<td>"+id+"</td>";
+						str+="<td>"+sname+"</td>";
+						str+="<td>"+age+"</td>";
+						str+="</tr>";
+						}
+						yc.$("students").innerHTML=str;
+					}
+				}
+    </script>
+</body>
+</html>

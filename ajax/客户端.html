@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<script>
+//ie7+,ff,opera,chrome,safari 都支持原生的xhr对像，可以向下面代码一样去创建
+//var xhr=new XMLHttpRequest
+//如果还想支持ie早起版本，则按下面函数
+	function createXHR(){
+		if(typeof XMLHttpRequest!='undefined'){
+			return new XMLHttpRequest();
+			
+			}else  if(typeof ActiveXObject!='undefined'){//ie早起版本
+			//查看调用函数中是否存在一个activeXtring的变量这个activeXtring的变量是自己创建的刚开始没有
+				if(typeof arguments.callee.activeXString!='string'){
+					var versions=['MSXML2.XMLHttp.6.0','MSXML2.XMLHttp.3.0','MSXML.XMLHttp'];
+					for(var i=0,len=versions.length;i<len;i++){
+						try{
+							var xhr=new ActiveXObject(versions[i]);
+							arguments.callee.activeXString=versions[i];
+							return xhr;
+							}catch(ex){
+						}
+					}
+				}
+				return new ActiveXObject(arguments.callee.activeXString);
+			}else{
+				throw new Error('No xhr object available.');
+			}
+		}
+		
+		
+		var request=createXHR();
+		if(request){
+			//get请求
+			request.onreadystatechange=listener;
+			request.open('GET','http://192.168.1.238:8080/test/hello.action?name=zy',true);
+			request.send(null);
+			}
+			//回掉函数
+			function listener(){
+				switch(request.readyState){
+					case 1:
+					console.log('载入服务器页面中');
+					break;
+					case 2:
+					console.log("载入完成");
+					break;
+					case 3:
+					console.log("交互...");
+					break;
+					case 4:
+					console.log('服务器响应完成..')
+					if(request.status==200){
+							console.log("服务器正常响应..");
+							alert(request.responseText);
+						}
+					}
+				}
+</script>
+</body>
+</html>
