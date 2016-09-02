@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+	<customer id='1'>
+		<name>张三</name>
+		<age>20</age>
+		<sex>男</sex>
+		<cname>信本1班</cname>
+		<friend>
+				<name>李四</name>
+				
+		</friend>
+	</customer>
+	<customer id='2'>
+		<name>王五</name>
+		<age>18</age>
+		<sex>男</sex>
+		<cname>信本2班</cname>
+		<friend>
+				<name>月心</name>
+				
+		</friend>
+	</customer>
+</customers>

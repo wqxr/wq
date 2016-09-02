@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<p id="result"></p>
+<script type="text/javascript">
+	function loadXML(file){
+		try{//Internet
+			xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+			xmlDoc.async=false;
+			xmlDoc.load(file);
+			}
+			catch(e){
+				try{
+					xmlDoc=document.implementation.createDocument("","",null);//这里与前面不同 new DOMParse()
+					xmlDoc.async=false;
+					xmlDoc.load(file);
+					}
+					catch(e){
+						try{
+							var xmlhttp=new window.XMLHttpRequest();//创建一个请求事件
+							xmlhttp.open("GET",file,false);//设置请求的参数   get请求类型    file 要请求的文件名 false 同步
+							xmlhttp.send(null);
+							xmlDoc=xmlhttp.responseXML.documentElement;//得到服务器的结果 responseXml documentElement获取根节点
+							}
+							catch(e){
+								alert("您的浏览器不能正常加载文件。请切换到兼容模式，或者更换浏览器");
+						}
+				}
+		}
+		return xmlDoc;
+	}
+	
+	var xmlDOM=loadXML("data.xml");
+	var xslDOM=loadXML("xsl.xml");
+	
+	if('\v'=='v'){
+		var resultDocument=xmlDOM.transformNode(xslDOM);
+		document.getElementById("result").innerHTML=resultDocument;
+		}else if(document.implementation&&document.implementation.createDocument){
+			xsltProcessor=new XSLTProcessor();
+			xsltProcessor.importStylesheet(xslDOM);//引入样式表文件
+			var resultDocument=xsltProcessor.transformToFragment(xmlDOM,document);//将样式表和数据文件合并，生成一个新的document字符串
+			document.getElementById("result").appendChild(resultDocument);
+			}
+		</script>
+</body>
+</html>
