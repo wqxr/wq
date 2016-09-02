@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+表单新增加的特性 form 这个input隶属哪一个form的
+	<input type="text" name="txt" form="form1" pattern="[a-z]{3}"/>
+    <form id="form1" action="" method="">
+    	<p>input标签的类型：text password button submit reset file radio checkbox</p>
+        <!--输入网址 会自动验证 记得带上http协议-->
+        <p>请输入一个网址：<input type="url" name="weburl" placeholder="请带上协议"/></p>
+        <!--自动获得焦点-->
+        <p>请输入一个邮箱：<input type="email" name="email" autofocus/></p>
+        <p>date:<input type="date" name="date"/></p>
+        <p>color:<input type="color" name="color"/></p>
+        <!--pattern 正则-->
+        <p>number:<input type="number" name="number"/></p>
+        <!--autocomplete 自动保存你提交的数据-->
+        <p>tel<input type="tel" name="tel" autocomplete="on"/></p>
+        <p>search:<input type="search" name="search" autocomplete="off"/></p>
+        <!--required必要的-->
+        <p>tel<input type="tel" name="tel" required/></p>
+        <!--formaction 可以提交给不通的的网页-->
+        <p><input type="submit" value="提交" formaction="?page=1"/></p>
+        <p><input type="submit" value="提交" formaction="?page=2"/></p>
+        <p><input type="submit" value="提交" formaction="?page=3"/></p>
+
+</form>
+</body>
+</html>

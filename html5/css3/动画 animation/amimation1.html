@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.box{
+		width:200px;
+		height:100px;
+		background:#6F6;
+		margin-top:20px;
+		border: 1px #F66 solid; 
+		-webkit-animation:move 4s ease-in infinite;
+		border-radius:0px;
+		}
+	@-webkit-keyframes move{
+		0%{
+			width:100px;
+			
+			}
+		20%{
+			height:200px;
+			background-color:#FF3;
+			}
+		40%{
+			border-radius:100px 100px 100px 100px;
+			background:#36C;
+			opacity:0.5;
+			}
+		50%{
+			opactity:1;
+			}
+		}
+</style>
+</head>
+
+<body>
+<div class="box"></div>
+</body>
+</html>

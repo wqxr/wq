@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	@font-face{
+		font-family:wq;
+		/*引入本地的字体这个字体到时候也要一并上传到服务器  */
+		src:url(STXINGKA.TTF);
+		}
+	.p1{
+		font-size:120px;
+		/*文字描边   厚度/宽度 颜色 支持谷歌不支持火狐*/
+		-webkit-text-stroke:4px red;
+		direction:rtl;
+		unicode-bidi:bidi-override;/*你文字的顺序和你的director一样*/
+		font-family:wq;
+		/*文本阴影  x  y  模糊半径 颜色*/
+		text-shadow:3px 3px 3px lime;
+		
+		}
+	.p2{
+		font-size:48px;
+		width:200px;
+		height:200px;
+		border:1px solid red;
+		color:red;
+		font-weight:bold;
+		text-align:right;
+		font-family:'华文行楷';
+		/*省略号*/
+		white-space:nowrap;/*强制在一行显示*/
+		overflow:hidden;
+		text-overflow:ellipsis;
+		}
+	
+</style>
+</head>
+
+<body>
+<p class="p1">都发来浮动</p>
+<p class="p2">阶段将改了的都寄过来的</p>
+</body>
+</html>

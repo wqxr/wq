@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	div{
+		width:200px;
+		height:200px;
+		background:lime;
+		}
+	p{
+		width:300px;
+		height:300px;
+		margin-left:300px;
+		background:pink;
+		}
+</style>
+</head>
+
+<body>
+	draggable:可拖拽的 true false auto
+    auto:img和a标签默认是可以拖拽的
+    <div draggable="true">aaaa</div>
+    <p></p>
+    拖拽的事件
+    <script>
+    		var div=document.getElementsByTagName("div")[0];
+			div.addEventListener("dragstart",function(){
+				console.log("开始拖放");
+				},false);
+				// 正再拖放
+				div.addEventListener("drag",function(){
+					console.log("正再拖放中");
+					},false);
+					//被拖放是的元素或者是从文件系统中选中的文件，拖放落下的时候触发
+					
+					div.addEventListener("drop",function(){
+						console.log("拖放落下");
+						},false);
+					
+					div.addEventListener("dragend",function(){
+						console.log("拖放结束");
+						},false);
+					var p=document.getElementsByTagName("p")[0];
+					p.addEventListener("dragenter",function(){
+						console.log("拖放进入了目标元素");
+						},false);
+					p.addEventListener("dragleave",function(){
+						console.log("拖放离开了目标元素");
+						},false);
+						p.addEventListener("dragover",function(){
+							console.log("拖放元素在目标元素中移动");
+							},false);
+    </script>
+</body>
+</html>

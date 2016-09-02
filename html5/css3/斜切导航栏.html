@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	ul{
+		list-style:none;
+		padding:0px;
+		margin:0px;
+		}
+	li{
+		float:left;
+		width:140px;
+		height:30px;
+		text-align:center;
+		line-height:30px;
+		background-color:pink;
+		border:1px solid #fff;
+		/*我们看到文字斜切了，所以文字要切回来*/
+		-webkit-transform:skewX(30deg);
+		}
+	a{
+		text-decoration:none;
+		-webkit-transform:skewX(-30deg);/*行级标签没有大小，所以要改为块级标签之后才能有大小才可以转*/
+		display:block; /*定义为块级标签
+		*/
+		}
+</style>
+</head>
+
+<body>
+<ul>
+	<li><a href="">阅读</a></li>
+    <li><a href="">写作</a></li>
+    <li><a href="">篮球</a></li>
+    <li><a href="">音乐</a></li>
+    <li><a href="">跑步</a></li>
+   </ul>
+</body>
+</html>

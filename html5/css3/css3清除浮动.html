@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.div1{
+		float:left;
+		width:200px;
+		height:200px;
+		border:1px solid red;
+		}
+	.div2{
+		float:left;
+		width:200px;
+		height:200px;
+		border:1px solid lime;
+		}
+		.box{
+			border:1px solid black;
+			zoom:1;/*ie的私有属性 清除浮动 清除margin所引起的空间塌陷、重叠*/
+			}
+	/*目前清除浮动的是这样清除的*/
+	.box:after{
+		content:"";
+		display:block;
+		clear:both;
+		}
+</style>
+</head>
+
+<body>
+	<div class="box">
+    	<div class="div1">发货单上刚开始的</div>
+        <div class="div2">fgjdkljglsdj了关键是路附近的大概开了的积分两块多不吉利</div>
+    </div>
+    <div class="box2">肯定盖开始发动机飞机开始</div>
+</body>
+</html>

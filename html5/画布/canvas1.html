@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#canvas1{
+	width:500px;
+	height:800px;
+	border:1px solid pink;
+	}
+#canvas2{
+	border:1px solid lime;
+	}
+</style>
+</head>
+
+<body>
+<canvas id="canvas1">您的浏览器不支持html5</canvas>
+<canvas id="canvas2" width="200" height="200">你的浏览器不支持html5</canvas>
+canvas的大小不能用css样式设置css的设置大小，css设置的大小是体现一个标签在网页里面占据的空间而已
+canvas有自己的内部像素，默认是高300像素，宽150像素
+canvas的大小是由canvas的属性来决定的，而且不带单位
+canvas的绘制，自身没有绘制能力，所有的绘制都必须在js内部完成
+<script>
+	var canvas1=document.getElementById("canvas1");
+	var canvas2=document.getElementById("canvas2");
+	//设置大小而且不要加单位
+	canvas1.width=500;
+	canvas1.height=300;
+	//获得绘制对象
+	var context1=canvas1.getContext("2d");
+	var context2=canvas2.getContext("2d");
+	//开始绘制
+	//fill()填充
+	//fillStyle="" 填充的颜色
+	context1.fillStyle="red";
+	context1.fillRect(0,0,200,200);
+	context1.fill();
+	context2.fillStyle="red";
+	context2.fillRect(0,0,200,200);
+	context2.fill();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.box{
+		width:300px;
+		height:300px;
+		background:url(hashiqi.jpg);
+		border:30px solid rgba(0,0,0,0.5);
+		padding:50px;
+		background-clip:border-box;
+		/*裁剪
+		context-box
+		border-box
+		padding-box
+		*/
+		}
+		.box2{
+			width:300px;
+			height:300px;
+			background:url(lyf.jpeg);
+			border:30px solid rgba(0,0,0,0.5);
+			padding:50px;
+			/*加粗 大小 行高 字体*/
+			font:bold 120px/150px "微软雅黑";
+			/*文字填充*/
+			-webkit-background-clip:text;
+			text-align:center;
+			color:rgba(0,0,0,0);
+			transition:1s;
+			-webkit-transition:1s;
+			}
+			
+		.box2:hover{
+				background-position:-600px -200px;
+				}
+		.box3{
+			width:300px;
+			height:300px;
+			background:-webkit-linear-gradient(-30deg,rgba(0,0,0,1) 100px, rgba(0,0,0,0) 180px, rgba(0,0,0,0) 240px, rgba(0,0,0,1) 300px) 40px 0 no-repeat;
+			}
+			
+</style>
+
+</head>
+
+<body>
+	<div class="box">aaaa</div>
+    <div class="box2">王清</div>
+    <div class="box3">晚晴</div>
+
+</body>
+</html>

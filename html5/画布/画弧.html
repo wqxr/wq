@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="canvas" width="600" height="600">你的浏览器不支持html5</canvas>
+<script>
+	//1.得到canvas对象
+	var canvas=document.getElementById("canvas");
+	//2.获得绘制对象 俗称上下文
+	var context=canvas.getContext("2d");
+	//画弧形 context.arc(x,y,radius,startAngle,endAngle,antiClockwise)
+	//x y 圆心坐标  radius 半径  startAngle 开始的位置  endAngle结束的位置  antiClockwise 逆时针还是顺势针 逆时针true
+	context.arc(200,200,150,0,360*Math.PI/180,false);
+	context.fillStyle="red";
+	context.fill();
+	context.strokeStyle="pink";
+	context.stroke();
+</script>
+</body>
+</html>

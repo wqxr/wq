@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="canvas" height="1000" width="1000" style="background:black"></canvas>
+<script>
+	var canvas=document.getElementById("canvas");
+	var cxt=canvas.getContext("2d");
+	var time=0;
+	function draw(){
+		cxt.clearRect(0,0,1000,1000);
+	cxt.beginPath();
+		cxt.arc(500,500,100,0,360,false);
+	cxt.closePath();
+	cxt.strokeStyle="white";
+	cxt.stroke();
+	
+	cxt.beginPath();
+	cxt.arc(500,500,20,0,360,false);
+	cxt.closePath();
+	//创建渐径静变（内圈圆心，外圈圆心，内半径，外圆心，内圆心，外半径）
+	var suncolor=cxt.createRadialGradient(500,500,0,500,500,20);
+	suncolor.addColorStop(0,"#f00");
+	suncolor.addColorStop(1,"#f90");
+	cxt.fillStyle=suncolor;
+	cxt.fill();
+	
+	//画地球
+	cxt.save();
+	
+	//设置一下异次元空间的0,0点
+	cxt.translate(500,500);
+	//设置旋转角度
+	cxt.rotate(time*365/360*Math.PI/180);
+	//画出地球
+	cxt.beginPath();
+		cxt.arc(0,-100,10,0,360,false);
+	cxt.closePath();
+	//设置一下地球的颜色
+	var earthColor=cxt.createRadialGradient(0,-100,0,0,-100,10);
+	earthColor.addColorStop(0,"#78b1e8");
+	earthColor.addColorStop(1,"#050c12");
+	cxt.fillStyle=earthColor;
+	cxt.fill();
+	cxt.restore();
+	time+=1;
+	}
+	setInterval(draw,10);
+</script>
+
+</body>
+</html>

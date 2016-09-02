@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	#box{
+		position:absolute;
+		left:300px;
+		top:200px;
+		font-size:12px;
+		background:pink;
+		padding:5px;
+		box-shadow:2px 2px 4px red;
+		-moz-box-shadow:2px 2px 4px red;
+		-webkit-box-shadow:2px 2px 4px red;
+		-ms-box-shadow:2px 2px 4px red;
+		}
+	#content{
+		
+		border:1px solid #a5b5d6;
+		}
+	#top{
+		width:425px;
+		line-height:25px;
+		cursor:move;
+		backgrund:#bdceef;
+		border-bottom:1px solid #a5b5d6;
+		padding-left:5px;
+		}
+	#close{
+		color:red;
+		font-size:30px;
+		font-weigth:bold;
+		float:right;
+		position:absolute;
+		top:2px;
+		right:8px;
+		cursor:pointer;
+		}
+	#bottom{
+		width:420px;
+		height:250px;
+		padding:10px 5px;
+		}
+</style>
+</head>
+
+<body>
+<div id="box">
+    	<div id="content">
+    		<div id="top" draggable="true">
+        		可拖拽
+            	<span id="close">x</span>
+       		 </div>
+        <div id="bottom">
+        	内容.....
+        </div>
+    </div>
+  </div>
+  <script>
+  var box=document.getElementById("box");
+  
+  
+	box.addEventListener("drag",function(e){
+		var minx=e.clientX;
+		var miny=e.clientY;
+		if(minx==0){
+			return; 
+			}
+		  box.style.left=e.clientX+"px";
+		  box.style.top=e.clientY+"px";
+		  },false);
+	  
+  </script>
+</body>
+</html>

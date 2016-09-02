@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	div{
+		width:100px;
+		height:100px;
+		background-color:pink;
+		transition:width 1s;
+		}
+</style>
+</head>
+
+<body>
+<div class="box"></div>
+<script>
+	var box=document.getElementsByClassName("box")[0];
+	box.onclick=function(){
+		this.style.width=this.offsetWidth+100+"px";
+		}
+	function addEnd(obj,fn){
+		obj.addEventListener("webkitTransitionEnd",fn,false);
+		obj.addEventListener("transitionEnd",fn,false);//兼容火狐
+
+		}
+	addEnd(box,function(){
+		this.style.width=this.offsetWidth+100+"px";
+			})
+</script>
+</body>
+</html>

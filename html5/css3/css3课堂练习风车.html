@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	/*div{
+		width:100px;
+		height:100px;
+		background-color:lime;
+		margin:10px;
+		}
+	body div:nth-child(1){
+		border-radius:10px;
+		}
+	body div:nth-child(2){
+		border-top-left-radius:10px;
+		border-top-right-radius:20px;
+		border-bottom-left-radius:40px;
+		border-bottom-right-radius:80px;
+		}
+		body div:nth-child(3){*/
+			/*第一个参数 左上右下  第二个参数右上 左下*/
+			/*border-radius:0% 90%;
+			}*/
+	.box{
+			width:400px;
+			height:400px;
+			margin:50px auto;
+			transition:5s linear;
+			-webkit-transition:3s linear;
+			-webkit-transform-origin:center center;
+			
+			}
+	.box div{
+			width:150px;
+			height:150px;
+			float:left;
+			margin:5px;
+			}
+	.box div:nth-child(1){
+		background-color:#F00;
+		border-radius:0% 80%;
+		
+		}
+	.box div:nth-child(2){
+		background-color:#0F0;
+		border-radius:80% 0%;
+		float:left;
+			}
+	.box div:nth-child(3){
+		
+		background-color:#06F;
+		border-radius:80% 0%;
+		
+			}
+	.box div:nth-child(4){
+		background-color:#F9C;
+		border-radius:0% 80%;
+		}
+	.box:hover{
+		transform:rotate(360deg);
+		-webkit-transform:rotate(360deg);
+		}
+		
+</style>
+</head>
+
+<body>
+<div class="box">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</div>
+<script>
+	var box=document.getElementsByClassName("box")[0];
+	var i=1;	
+	
+	box.onclick=function(){
+		this.style.WebkitTransform="rotate(360deg)";
+		}
+	function addEnd(obj,fn){
+		obj.addEventListener("webkitTransitionEnd",fn,false);
+		obj.addEventListener("transitionEnd",fn,false);//兼容火狐
+
+		}
+	addEnd(box,function(){
+		i++;
+		this.style.WebkitTransform="rotate("+360*i+"deg)";
+
+			})
+
+</script>
+
+</body>
+</html>

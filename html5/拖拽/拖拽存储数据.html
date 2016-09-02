@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ul{
+	height:300px;
+	margin:20px;
+	background-color:#eee;
+	}
+ul li {
+	
+	background:#ccc;
+	padding:10px;
+	margin-bottom:10px;}
+</style>
+</head>
+
+<body>
+	<ul id="drag-elements">
+    	<li draggable="true">A</li>
+        <li draggable="true">B</li>
+        <li draggable="true">C</li>
+    </ul>
+    <ul id="drop-target"></ul>
+    <script>
+    	//获得目标元素和拖放元素
+		var target=document.getElementById("drop-target");
+		var dragElement=document.getElementsByTagName("li");
+		var elementDragged;
+		for(var i=0;i<dragElement.length;i++){
+			dragElement[i].addEventListener("dragstart",function(e){
+				e.dataTransfer.setData("text",this.innerHTML);
+				elementDragged=this;
+				},false);
+				dragElement[i].addEventListener("dragend",function(e){
+					//拖放结束，把这个元素设为null
+					elementDragged=null;
+					},false)
+			}
+			
+			//被拖放的元素停留在ul上面
+			target.addEventListener("dragover",function(e){
+				e.preventDefault();
+				e.dataTransfer.dropEffect="move";
+				},false)
+				
+				target.addEventListener("drop",function(e){
+					e.preventDefault();
+					this.innerHTML=e.dataTransfer.getData("text");
+					//移除元素的节点
+					//document.getElementById("drag-elements").removeChild(elementDragged);
+					},false);
+    </script>
+</body>
+</html>

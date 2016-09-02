@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	body{
+		background:#f9f9f9;
+		}
+	#menu{
+		width:50px;
+		height:50px;
+		position:fixed;
+		left:50%;
+		top:50%;
+		}
+	#menu_list{
+		position:relative;
+		width:42px;
+		height:42px;
+		}
+	#menu_list img{
+		position:absolute;
+		left:0px;
+		top:0px;
+		}
+	#home{
+		width:50px;
+		height:50px;
+		background:url(images/home.png) no-repeat;
+		position:absolute;
+		left:0px;
+		top:0px;
+		-webkit-transition:1s;
+		}
+
+</style>
+</head>
+
+<body>
+<div id="menu">
+	<div id="menu_list">
+    	<img src="images/clos.png"/>
+        <img src="images/full.png"/>
+        <img src="images/open.png"/>
+        <img src="images/prev.png"/>
+        <img src="images/refresh.png"/>
+   	</div>
+   <div id="home"></div>
+</div>
+<script>
+	oHome=document.getElementById("home");
+	var aImag=document.getElementById("menu_list").getElementsByTagName("img");
+	var aTrue=true;
+	var rdis=150;
+	oHome.onclick=function(){
+		if(aTrue){
+			this.style.WebkitTransform="rotate(-360deg)";
+			//给每一个图片添加飞行的路径
+			for(var i=0;i<aImag.length;i++){
+				aImag[i].style.WebkitTransition="0.5s "+(aImag.length-i-1)*100+"ms";
+				var olt=Tofei(rdis,90/4*i);
+				aImag[i].style.left=olt.l+"px";
+				aImag[i].style.top=olt.t+"px";
+				aImag[i].style.WebkitTransform="rotate(-720deg)";
+				
+				}
+			}else{
+				this.style.WebkitTransform="rotate(360deg)";
+				//收回去
+				for(var i=0;i<aImag.length;i++){
+					aImag[i].style.WebkitTransition="0.5s "+(aImag.length-i-1)*100+"ms";
+					
+					aImag[i].style.left="0px";
+					aImag[i].style.top="0px";
+					aImag[i].style.WebkitTransform="rotate(0deg)";
+				}
+			}
+			aTrue=!aTrue;
+		}
+		function Tofei(rdis,ideg){
+				var oleft=Math.round(Math.sin(ideg/180*Math.PI)*rdis);
+				var otop=Math.round(Math.cos(ideg/180*Math.PI)*rdis);
+				return{l:oleft,t:otop};
+
+				}
+</script>
+</body>
+</html>

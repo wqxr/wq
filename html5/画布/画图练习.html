@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<canvas id="canvas1" width="600px" height="600px"></canvas>
+<script>
+	var canvas=document.getElementById("canvas1");
+	var context=canvas.getContext("2d");
+	context.arc(150,100,50,0,Math.PI*2,true);
+	/*context.fillStyle="orange";
+	context.fill();*/
+	/*context.arc(200,200,100,-90*Math.PI/180,90*Math.PI/180,true);
+	context.fillStyle="white";
+	context.stroke();*/
+	context.rect(50,50,100,100);
+	context.strokeStyle="#000";
+	context.lineWidth=3;
+	context.fillStyle="#f90";
+	context.stroke();
+	context.fill();
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	#imgs{
+		width:600px;
+		height:400px;
+		position:relative;
+		margin:30px auto;
+		/*定义3d属性*/
+		-webkit-transform-style:preserve-3d;
+		/*设置视井*/
+		-webkit-perspective:3000px;
+		}
+	#imgs img{
+		width:600px;
+		height:400px;
+		position:absolute;
+		left:0px;
+		top:0px;
+		/*3d旋转*/
+		-webkit-transform-origin:bottom;
+		/*-webkit-transition:all 1s;*/
+		-webkit-animation:move 4s ease-in infinite;
+		
+		}
+	/*#imgs:hover img{
+		-webkit-transform:rotateX(-180deg);
+	}*/
+	@-webkit-keyframes move{
+		0%{
+			top:0px;
+			left:0px;
+			}
+		25%{
+			-webkit-transform:rotateX(-60deg)
+			}
+			50%{
+				
+				-webkit-transform:skewX(45deg);
+				}
+			75%{
+				-webkit-transform:skewX(-45deg);
+				}
+		100%{
+			-webkit-transform:rotateX(-180deg);
+			}
+		}
+</style>
+</head>
+
+<body>
+	<div id="imgs">
+    	<img src="lyf.jpeg"/>
+    </div>
+</body>
+</html>

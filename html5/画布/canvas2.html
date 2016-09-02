@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	#canvas1{
+		border:1px solid pink;
+		}
+	#canvas2{
+		border:1px solid lime;
+		}
+</style>
+</head>
+
+<body>
+<canvas id="canvas1" width="300" height="300">您的浏览器不支持html5</canvas>
+<canvas id="canvas2" width="300" height="300">您的浏览器不支持html5</canvas>
+<script>
+	//1得到canvas对象
+	var canvas1=document.getElementById("canvas1");
+	var cahvas2=document.getElementById("canvas2");
+	
+	var context1=canvas1.getContext("2d");
+	var context2=canvas2.getContext("2d");
+	//开始绘制
+	//fill()填充
+	//fillStyle="" 填充的颜色
+	context1.fillStyle="rgba(244,8,9,0.7)";
+	context1.fillRect(50,50,200,200);
+	context1.fill();
+	context1.strokeStyle="rgba(78,33,119,0.7)";
+	context1.strokeRect(48,48,204,204);
+	context1.stroke();
+	//设置文字的大小颜色居中
+	context2.font="58px 华文行楷";
+	context2.fillRect="rgba(78,33,119,0.7)";
+	context2.fillText("王清",100,100);
+	context2.font="58px 华文行楷";
+	context2.strokeStyle="rgba(78,33,119,0.7)";
+	context2.strokeText("王清",98,98);
+</script>
+</body>
+</html>

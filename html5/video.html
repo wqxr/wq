@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#myPlayer{
+			width:968px;
+			height:544px;
+		}
+		#controls {
+			width:968px;
+			margin-top:-3px;
+			height:60px;
+			background-image: -moz-linear-gradient(top, #ccc, #999);
+			background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+			position:relative;
+		}
+		#controls #progressWrap {
+			width:968px;
+			height:5px;
+			background-color:#069;
+			padding:1px 0;
+			margin-bottom:5px;
+			cursor:pointer;
+		}
+		#controls #progressWrap #playProgress {
+			width:0px;
+			height:5px;
+			background-color:#F90;
+			border-radius:2px;
+		}
+		#showProgress{
+			color: #797979;
+		    position: absolute;
+		    right: 20px;
+		    text-shadow: 0 1px 0 #121212;
+		    top: 20px;
+		}
+		#controls .but {
+			font-family:Webdings;
+			background: -moz-linear-gradient(top, #666, #333);
+			background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#333));
+			cursor:pointer;
+			width:20px;
+			line-height:20px;
+			text-align:center;
+			color:#CCC;
+			border-radius:15px;
+			float:left;
+		}
+		#controls .but:hover {
+			background: -moz-linear-gradient(top, #06c, #069);
+			background: -webkit-gradient(linear, left top, left bottom, from(#06c), to(#069));
+		}
+		#controls #slow, #controls #fast {
+			padding:5px;
+			margin:5px;
+			font-size:16px;
+		}
+		#controls #play {
+			padding:10px;
+			font-size:24px;
+			border-radius:20px;
+		}
+		#controls #muted {
+			font-family:Webdings;
+			font-size:30px;
+			width:25px;
+			float:left;
+			margin:5px 0;
+			padding:5px 0;
+			line-height:20px;
+			color:#333;
+			cursor:pointer;
+		}
+		#controls .volume {
+			float:left;
+			margin:5px 0;
+			padding:5px 0;
+		}
+		#controls .volume input {
+			cursor:pointer;
+		}
+		#controls .info {
+			float:right;
+			padding:10px;
+			color:#666;
+		}
+
+	</style>
+</head>
+<body>
+	<video id="myPlayer" src="lightNight.mp4"  controls="controls" onclick="play()">
+		你的网页不支持html5
+	</video>
+	<div id="controls">
+		<div id="progressWrap">  
+            <div id="playProgress">  
+                <span id="showProgress"><em>00:00</em>/ <em>00:00</em></span> 
+            </div>
+        </div>
+        <div id="slow" class="but" onclick="Slow()">7</div>
+		<div id="play" class="but" onclick="play(this)">4;</div>
+		<div id="fast" class="but" onclick="Fast()">8</div>
+		<div id="muted" onclick="Muted(this)">X</div>
+		<div class="volume">
+    		<input id="volume" type="range" min="0" max="1" step="0.1" onchange="Volume(this)" value="1" />
+  		</div>
+	</div>
+	
+	<script>
+    	var video=document.getElementById("myPlayer");
+		var progressTime;
+		var progressWarp=document.getElementById("progressWrap");
+		var playProgress=document.getElementById("playProgress");
+		var showProgress=document.getElementById("showProgress");
+		
+		//播放与暂停
+		
+		function play(e){
+			if(video.paused){
+				video.play();//播放
+				progressTime=window.setInterval(getProgress,1000);
+				document.getElementById("play").innerHTML=";";
+				showProgress.getElementsByTagName("em")[1].innerHTML=sTom(video.duration);
+			
+				}else{
+					video.pause();//暂停
+					document.getElementById("play").innerHTML="4";
+					}
+			}
+			//获得进度条
+			function getProgress(){
+				//计算一下百分比 当前的事件除以总时间、
+				var percent=video.currentTime/video.duration;
+				playProgress.style.width=(percent*progressWarp.offsetWidth)+"px";
+				showProgress.getElementsByTagName("em")[0].innerHTML=sTom(video.currentTime);
+				
+				}
+				
+			//时间的计算
+			function sTom(time){
+				var str="";
+				// 先四舍五入
+				var time=Math.round(time);
+				var mins=Math.floor(time/60);
+				var sec=time%60;
+				if(mins>9){
+					str+=mins+":";
+					}else{
+						str+="0"+mins+":";
+						}
+				if(sec>9){
+					str+=sec;
+					}else{
+						str+="0"+sec;
+						}
+						return str;
+				}
+				progressWarp.onmousedown=function(e){
+					if(video.pause||video.ended){
+						
+						dragProgress(e);
+						}else{
+							play();
+							dragProgress(e);
+							}
+					}
+					
+				function dragProgress(e){
+					//清除原先的定时器
+					clearInterval(progressTime);
+					var length=e.pageX-progressWarp.offsetLeft;
+					var percent=length/progressWarp.offsetWidth;
+					//改变进度条的进度
+					playProgress.style.width=(percent*progressWarp.offsetWidth)+"px";
+					//改变视频的播放时间
+					video.currentTime=percent*video.duration;
+					showProgress.getElementsByTagName("em")[0].innrHTML=sTom(video.currentTime);
+					//重置设置定时器
+					progressTime=window.setInterval(getProgress,1000);
+					}
+				//控制音量	
+				
+			
+		
+    </script>
+</body>
+</html>

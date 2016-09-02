@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+.box{
+		
+		border:1px solid red;
+		font:14px/24px "宋体";
+		text-indent:2em;
+		/*分栏布局
+		-webkit-column-width:200px;*/
+		-webkit-column-count:4;
+		-webkit-column-gap:30px;/*每一列与每一列的距离*/
+		-webkit-column-rule:1px solid #000;
+		}

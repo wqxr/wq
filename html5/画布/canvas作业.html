@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>时钟</title>
+</head>
+
+<body>
+<canvas id="canvas1" width="400" height="500"></canvas>
+<script>
+
+	var canvas=document.getElementById("canvas1");
+	ctxt=canvas.getContext("2d");
+	function aa(){
+		ctxt.clearRect(0,0,400,500);
+		var now=new Date();
+		var hour=now.getHours();
+		var mins=now.getMinutes();
+		var sec=now.getSeconds();
+		hour=hour+mins/60;
+		hour=hour>12?hour-12:hour;
+		
+		ctxt.lineWidth=7;
+		ctxt.strokeStyle="blue";
+		ctxt.beginPath();
+		
+		ctxt.arc(200,200,150,0,360*Math.PI/180,true);
+		ctxt.closePath();
+		ctxt.stroke();
+		ctxt.strokeStyle="black"
+		//时刻度盘
+	for(var i=0;i<12;i++){
+		ctxt.save();
+		ctxt.lineWidth=5;
+	//	ctxt.strokeStyle="black"
+		ctxt.translate(200,200);
+		ctxt.rotate(i*30*Math.PI/180);
+		ctxt.beginPath();
+		
+		ctxt.moveTo(0,-135);
+		ctxt.lineTo(0,-145);
+		ctxt.closePath();
+		ctxt.stroke();
+		ctxt.restore();
+		
+		}
+	//分刻度盘
+	for(var i=0;i<60;i++){
+		ctxt.save();
+		//ctxt.strokeStyle="black";
+		ctxt.lineWidth=2;
+		ctxt.translate(200,200);
+		ctxt.rotate(i*6*Math.PI/180);
+		ctxt.beginPath();
+		ctxt.moveTo(0,-140);
+		ctxt.lineTo(0,-145);
+		ctxt.closePath();
+		ctxt.stroke();
+		ctxt.restore();
+		}
+		//画时针
+		ctxt.save();
+		ctxt.translate(200,200);
+		ctxt.rotate(hour*30*Math.PI/180);
+		ctxt.beginPath();
+		ctxt.lineWidth=5;
+		ctxt.moveTo(0,-100);
+		ctxt.lineTo(0,10);
+		ctxt.stroke();
+		ctxt.closePath();
+		ctxt.restore();
+		//中心画圈圈
+		
+		ctxt.beginPath();
+		ctxt.lineWidth=1;
+		ctxt.arc(200,200,5,0,2*Math.PI,true);
+		ctxt.fillStyle="red";
+		ctxt.fill();
+		ctxt.stroke();
+		ctxt.closePath();
+		//画分钟
+		ctxt.save();
+		ctxt.translate(200,200);
+		ctxt.rotate(mins*6*Math.PI/180);
+		ctxt.beginPath();
+		ctxt.lineWidth=3;
+		ctxt.moveTo(0,-110);
+		ctxt.lineTo(0,15);
+		ctxt.stroke();
+		ctxt.restore();
+		// 画秒钟
+		ctxt.save();
+		ctxt.translate(200,200);
+		ctxt.rotate(sec*6*Math.PI/180);
+		ctxt.beginPath();
+		ctxt.lineWidth=2;
+		ctxt.strokeStyle="red";
+		ctxt.moveTo(0,-130);
+		ctxt.lineTo(0,13);
+		ctxt.stroke();
+		ctxt.restore();
+		
+		
+	
+}
+aa();
+window.onload=function(){
+	setInterval(aa,1000);
+	}
+
+</script>
+</body>
+</html>
